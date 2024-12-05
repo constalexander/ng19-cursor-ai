@@ -7,6 +7,7 @@ Requirements:
 
 - Angular latest (currently 19.0.3)
 - strictly follows Angular Style Guide as defined on Angular.dev documentation
+- the app should be called "dashboard"
 - Tailwind + SCSS
 - Vite
 - pnpm for package manager
