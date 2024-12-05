@@ -1,1 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+// Dark theme base styles
+@layer base {
+  body {
+    @apply bg-primary text-gray-200 min-h-screen;
+  }
+}
