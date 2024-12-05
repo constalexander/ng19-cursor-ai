@@ -1,4 +1,4 @@
-# Dashboard
+# ng19 Cursor AI Dashboard
 
 A modern Angular dashboard showcasing the latest Angular features and best practices. Written entirely with Cursor Compose AI using natural language and iterative prompts.
 
