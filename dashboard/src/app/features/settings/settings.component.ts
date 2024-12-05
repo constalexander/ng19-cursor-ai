@@ -6,7 +6,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
-import { CardComponent, CardHeaderComponent, CardContentComponent, CardFooterComponent } from '@lib/shared/ui';
+import { CardComponent, CardHeaderComponent, CardContentComponent } from '@lib/shared/ui/card';
 import { AppStateService, UpdatePreferencesCommand, SetThemeCommand } from '@lib/core/state/app-state.service';
 
 interface SettingsForm {
@@ -39,7 +39,6 @@ interface SettingsForm {
     CardComponent,
     CardHeaderComponent,
     CardContentComponent,
-    CardFooterComponent,
   ],
   templateUrl: './settings.component.html',
 })
