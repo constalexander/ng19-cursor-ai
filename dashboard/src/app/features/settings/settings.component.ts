@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NonNullableFormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -7,6 +7,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
 import { CardComponent, CardHeaderComponent, CardContentComponent, CardFooterComponent } from '@lib/shared/ui';
+import { AppStateService, UpdatePreferencesCommand, SetThemeCommand } from '@lib/core/state/app-state.service';
 
 interface SettingsForm {
   notifications: {
@@ -42,8 +43,9 @@ interface SettingsForm {
   ],
   templateUrl: './settings.component.html',
 })
-export class SettingsComponent {
+export class SettingsComponent implements OnInit {
   private fb = inject(NonNullableFormBuilder);
+  private appState = inject(AppStateService);
 
   form = this.fb.group({
     notifications: this.fb.group({
@@ -51,9 +53,9 @@ export class SettingsComponent {
       emailUpdates: true,
     }),
     preferences: this.fb.group({
-      language: 'en' as const,
-      timezone: 'UTC',
-      theme: 'system' as const,
+      language: this.appState.userPreferences().language,
+      timezone: this.appState.userPreferences().timezone,
+      theme: this.appState.theme(),
     }),
     data: this.fb.group({
       retentionDays: 30,
@@ -62,10 +64,38 @@ export class SettingsComponent {
     }),
   });
 
+  ngOnInit() {
+    // Subscribe to form changes to update state
+    this.form.get('preferences')?.valueChanges.subscribe(preferences => {
+      if (preferences.theme) {
+        this.appState.dispatch(new SetThemeCommand(preferences.theme));
+      }
+
+      this.appState.dispatch(
+        new UpdatePreferencesCommand({
+          language: preferences.language,
+          timezone: preferences.timezone,
+        })
+      );
+    });
+  }
+
   onSubmit() {
     if (this.form.valid) {
-      const settings = this.form.getRawValue();
-      console.log('Settings updated:', settings);
+      const { preferences } = this.form.getRawValue();
+
+      // Update theme
+      this.appState.dispatch(new SetThemeCommand(preferences.theme));
+
+      // Update preferences
+      this.appState.dispatch(
+        new UpdatePreferencesCommand({
+          language: preferences.language,
+          timezone: preferences.timezone,
+        })
+      );
+
+      console.log('Settings updated:', this.form.getRawValue());
     }
   }
 }
