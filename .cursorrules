@@ -2,6 +2,7 @@ Let's build a new Angular app starting from scratch.
 Be sure to consult with the Angular documentation on how to do it "The Angular Way".
 Use Angular CLI to generate the app, components, etc.
 Let's take it step by step and work our way up to the final product.
+When you give me a CLI command, wait for me to run it before continuing.
 Requirements:
 
 - Angular latest (currently 19.0.3)
