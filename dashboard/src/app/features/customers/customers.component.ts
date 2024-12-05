@@ -1,4 +1,4 @@
-import { Component, signal, ViewChild, OnInit, AfterViewInit } from '@angular/core';
+import { Component, signal, ViewChild, OnInit, AfterViewInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatTableModule, MatTableDataSource } from '@angular/material/table';
 import { MatPaginatorModule, MatPaginator } from '@angular/material/paginator';
@@ -7,7 +7,7 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatCardModule } from '@angular/material/card';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, FormBuilder } from '@angular/forms';
 import { InteractiveDirective } from '@lib/shared/directives';
 import { CustomerStatsService } from '@lib/shared/services/customer-stats.service';
 
@@ -39,6 +39,9 @@ interface Customer {
   templateUrl: './customers.component.html',
 })
 export class CustomersComponent implements OnInit, AfterViewInit {
+  private customerStats = inject(CustomerStatsService);
+  private fb = inject(FormBuilder);
+
   displayedColumns = ['name', 'email', 'status', 'country', 'lastOrder', 'totalSpent'];
   dataSource!: MatTableDataSource<Customer>;
   customers = signal<Customer[]>([
@@ -79,8 +82,6 @@ export class CustomersComponent implements OnInit, AfterViewInit {
 
   readonly stats = this.customerStats.stats;
   readonly activePercentage = this.customerStats.activePercentage;
-
-  constructor(private fb: FormBuilder, private customerStats: CustomerStatsService) {}
 
   ngOnInit() {
     this.dataSource = new MatTableDataSource(this.customers());

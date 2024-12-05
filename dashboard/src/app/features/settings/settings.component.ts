@@ -1,12 +1,29 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { NonNullableFormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
+
+interface SettingsForm {
+  notifications: {
+    pushEnabled: boolean;
+    emailUpdates: boolean;
+  };
+  preferences: {
+    language: 'en' | 'es' | 'fr';
+    timezone: string;
+    theme: 'system' | 'dark' | 'light';
+  };
+  data: {
+    retentionDays: number;
+    autoBackup: boolean;
+    syncFrequency: 'hourly' | 'daily' | 'weekly';
+  };
+}
 
 @Component({
   selector: 'app-settings',
@@ -23,22 +40,29 @@ import { MatButtonModule } from '@angular/material/button';
   templateUrl: './settings.component.html',
 })
 export class SettingsComponent {
-  settingsForm: FormGroup;
+  private fb = inject(NonNullableFormBuilder);
 
-  constructor(private fb: FormBuilder) {
-    this.settingsForm = this.fb.group({
-      notifications: true,
+  form = this.fb.group({
+    notifications: this.fb.group({
+      pushEnabled: true,
       emailUpdates: true,
-      language: 'en',
+    }),
+    preferences: this.fb.group({
+      language: 'en' as const,
       timezone: 'UTC',
-      dataRetention: '30',
+      theme: 'system' as const,
+    }),
+    data: this.fb.group({
+      retentionDays: 30,
       autoBackup: false,
-    });
-  }
+      syncFrequency: 'daily' as const,
+    }),
+  });
 
   onSubmit() {
-    if (this.settingsForm.valid) {
-      console.log('Settings updated:', this.settingsForm.value);
+    if (this.form.valid) {
+      const settings = this.form.getRawValue();
+      console.log('Settings updated:', settings);
     }
   }
 }
