@@ -94,7 +94,7 @@ importers:
         specifier: ^29.5.14
         version: 29.5.14
       '@types/node':
-        specifier: ^18.18.0
+        specifier: ^18.19.67
         version: 18.19.67
       autoprefixer:
         specifier: ^10.4.20
