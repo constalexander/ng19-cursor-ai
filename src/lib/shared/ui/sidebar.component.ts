@@ -1,8 +1,10 @@
 import { Component, signal } from '@angular/core';
+import { RouterLink, RouterLinkActive } from '@angular/router';
 
 @Component({
   selector: 'app-sidebar',
   standalone: true,
+  imports: [RouterLink, RouterLinkActive],
   template: `
     <nav class="h-full bg-secondary p-4">
       <div class="mb-8">
@@ -21,7 +23,6 @@ import { Component, signal } from '@angular/core';
       }
     </nav>
   `,
-  imports: [],
 })
 export class SidebarComponent {
   menuItems = signal([
