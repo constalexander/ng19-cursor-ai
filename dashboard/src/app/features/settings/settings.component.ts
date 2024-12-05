@@ -1,12 +1,12 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NonNullableFormBuilder, ReactiveFormsModule } from '@angular/forms';
-import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
+import { CardComponent, CardHeaderComponent, CardContentComponent, CardFooterComponent } from '@lib/shared/ui';
 
 interface SettingsForm {
   notifications: {
@@ -30,12 +30,15 @@ interface SettingsForm {
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    MatCardModule,
     MatFormFieldModule,
     MatInputModule,
     MatSlideToggleModule,
     MatSelectModule,
     MatButtonModule,
+    CardComponent,
+    CardHeaderComponent,
+    CardContentComponent,
+    CardFooterComponent,
   ],
   templateUrl: './settings.component.html',
 })

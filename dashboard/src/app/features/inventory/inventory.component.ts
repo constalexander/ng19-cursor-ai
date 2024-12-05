@@ -1,9 +1,9 @@
 import { Component, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatBadgeModule } from '@angular/material/badge';
+import { CardComponent, CardHeaderComponent, CardContentComponent, CardFooterComponent } from '@lib/shared/ui';
 
 interface Product {
   id: string;
@@ -13,11 +13,21 @@ interface Product {
   stock: number;
   status: 'in_stock' | 'low_stock' | 'out_of_stock';
   lastUpdated: string;
+  image?: string;
 }
 
 @Component({
   selector: 'app-inventory',
-  imports: [CommonModule, MatCardModule, MatButtonModule, MatIconModule, MatBadgeModule],
+  imports: [
+    CommonModule,
+    MatButtonModule,
+    MatIconModule,
+    MatBadgeModule,
+    CardComponent,
+    CardHeaderComponent,
+    CardContentComponent,
+    CardFooterComponent,
+  ],
   templateUrl: './inventory.component.html',
 })
 export class InventoryComponent {

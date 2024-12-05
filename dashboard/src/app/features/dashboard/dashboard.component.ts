@@ -1,5 +1,6 @@
 import { Component, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { CardComponent, CardHeaderComponent, CardContentComponent, CardFooterComponent } from '@lib/shared/ui/card';
 
 interface DashboardMetric {
   label: string;
@@ -10,7 +11,7 @@ interface DashboardMetric {
 
 @Component({
   selector: 'app-dashboard',
-  imports: [CommonModule],
+  imports: [CommonModule, CardComponent, CardHeaderComponent, CardContentComponent, CardFooterComponent],
   templateUrl: './dashboard.component.html',
 })
 export class DashboardComponent {

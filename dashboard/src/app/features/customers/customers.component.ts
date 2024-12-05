@@ -10,6 +10,7 @@ import { MatCardModule } from '@angular/material/card';
 import { FormsModule, FormBuilder } from '@angular/forms';
 import { InteractiveDirective } from '@lib/shared/directives';
 import { CustomerStatsService } from '@lib/shared/services/customer-stats.service';
+import { CardComponent, CardContentComponent } from '@lib/shared/ui';
 
 interface Customer {
   id: string;
@@ -35,6 +36,8 @@ interface Customer {
     MatCardModule,
     FormsModule,
     InteractiveDirective,
+    CardComponent,
+    CardContentComponent,
   ],
   templateUrl: './customers.component.html',
 })

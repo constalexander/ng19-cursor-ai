@@ -3,29 +3,25 @@
 
   <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
     <!-- Sales Chart -->
-    <mat-card class="bg-secondary">
-      <mat-card-header>
-        <mat-card-title>Sales Overview</mat-card-title>
-        <mat-card-subtitle>Last 6 months</mat-card-subtitle>
-      </mat-card-header>
-      <mat-card-content>
-        @if (isBrowser) {
+    <app-card>
+      <app-card-header>
+        <h2 class="text-xl font-semibold" title>Sales Overview</h2>
+        <p class="text-sm text-gray-400" subtitle>Last 6 months</p>
+      </app-card-header>
+      <app-card-content>
         <canvas baseChart [type]="'line'" [data]="salesData" [options]="salesOptions"> </canvas>
-        }
-      </mat-card-content>
-    </mat-card>
+      </app-card-content>
+    </app-card>
 
     <!-- Traffic Sources -->
-    <mat-card class="bg-secondary">
-      <mat-card-header>
-        <mat-card-title>Traffic Sources</mat-card-title>
-        <mat-card-subtitle>Distribution by channel</mat-card-subtitle>
-      </mat-card-header>
-      <mat-card-content>
-        @if (isBrowser) {
+    <app-card>
+      <app-card-header>
+        <h2 class="text-xl font-semibold" title>Traffic Sources</h2>
+        <p class="text-sm text-gray-400" subtitle>Distribution by channel</p>
+      </app-card-header>
+      <app-card-content>
         <canvas baseChart [type]="'doughnut'" [data]="trafficData" [options]="trafficOptions"> </canvas>
-        }
-      </mat-card-content>
-    </mat-card>
+      </app-card-content>
+    </app-card>
   </div>
 </div>

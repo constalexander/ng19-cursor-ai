@@ -1,38 +1,45 @@
 <div class="space-y-6">
   <h1 class="text-2xl font-bold">Inventory</h1>
 
-  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 grid-rows-1">
     @for (product of products(); track product.id) {
-    <mat-card class="bg-secondary">
-      <mat-card-header>
-        <mat-card-title>{{ product.name }}</mat-card-title>
-        <mat-card-subtitle>{{ product.category }}</mat-card-subtitle>
-      </mat-card-header>
+    <app-card class="h-full">
+      <app-card-header>
+        <div class="flex justify-between items-start">
+          <div>
+            <h3 class="text-lg font-semibold" title>{{ product.name }}</h3>
+            <p class="text-sm text-gray-400" subtitle>{{ product.category }}</p>
+          </div>
+          <div [class]="getStockColor(product.status)" class="text-sm font-medium">
+            {{ getStockText(product.status) }}
+          </div>
+        </div>
+      </app-card-header>
 
-      <mat-card-content class="mt-4">
-        <div class="space-y-2">
+      <app-card-content>
+        <div class="space-y-4">
           <div class="flex justify-between items-center">
             <span class="text-gray-400">Price</span>
-            <span class="text-xl">${{ product.price }}</span>
+            <span class="text-xl font-bold">${{ product.price }}</span>
           </div>
           <div class="flex justify-between items-center">
             <span class="text-gray-400">Stock</span>
-            <span [class]="getStockColor(product.status)">
-              {{ getStockText(product.status) }} ({{ product.stock }})
-            </span>
+            <span class="text-lg">{{ product.stock }} units</span>
           </div>
           <div class="flex justify-between items-center">
             <span class="text-gray-400">Last Updated</span>
-            <span>{{ product.lastUpdated }}</span>
+            <span class="text-sm">{{ product.lastUpdated }}</span>
           </div>
         </div>
-      </mat-card-content>
+      </app-card-content>
 
-      <mat-card-actions class="flex justify-end gap-2">
-        <button mat-button color="accent">Edit</button>
-        <button mat-raised-button color="primary">Update Stock</button>
-      </mat-card-actions>
-    </mat-card>
+      <app-card-footer>
+        <div class="flex justify-end gap-2">
+          <button mat-button color="accent">Edit</button>
+          <button mat-raised-button color="primary">Update Stock</button>
+        </div>
+      </app-card-footer>
+    </app-card>
     }
   </div>
 </div>

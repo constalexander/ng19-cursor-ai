@@ -1,32 +1,38 @@
 <div class="space-y-6">
   <h1 class="text-2xl font-bold">Dashboard Overview</h1>
 
-  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 grid-rows-1">
     @for (metric of metrics(); track metric.label) {
-    <div class="bg-secondary p-4 rounded-lg">
-      <div class="flex justify-between items-start">
-        <div>
-          <p class="text-gray-400 text-sm">{{ metric.label }}</p>
-          <p class="text-2xl font-semibold mt-1">{{ metric.value }}</p>
+    <app-card class="h-full">
+      <app-card-header>
+        <h3 class="text-lg font-semibold" title>{{ metric.label }}</h3>
+      </app-card-header>
+      <app-card-content>
+        <div class="flex justify-between items-center">
+          <span class="text-2xl font-bold">{{ metric.value }}</span>
+          <span class="material-symbols-outlined" [class]="metric.trend === 'up' ? 'text-green-500' : 'text-red-500'">
+            {{ metric.trend === 'up' ? 'trending_up' : 'trending_down' }}
+          </span>
         </div>
-        <span class="material-symbols-outlined" [class]="metric.trend === 'up' ? 'text-green-500' : 'text-red-500'">
-          {{ metric.trend === 'up' ? 'trending_up' : 'trending_down' }}
-        </span>
-      </div>
-      <p class="text-sm mt-2" [class]="metric.trend === 'up' ? 'text-green-500' : 'text-red-500'">
-        {{ metric.percentage }}% from last month
-      </p>
-    </div>
+        <p class="text-sm mt-2" [class]="metric.trend === 'up' ? 'text-green-500' : 'text-red-500'">
+          {{ metric.percentage }}% from last month
+        </p>
+      </app-card-content>
+    </app-card>
     }
   </div>
 
   @defer {
-  <div class="mt-8 bg-secondary p-6 rounded-lg">
-    <h2 class="text-xl font-semibold mb-4">Recent Activity</h2>
-    <!-- We'll add a chart or detailed stats here later -->
-  </div>
+  <app-card class="mt-5">
+    <app-card-header>
+      <h2 class="text-xl font-semibold" title>Recent Activity</h2>
+    </app-card-header>
+    <app-card-content>
+      <!-- Chart content here -->
+    </app-card-content>
+  </app-card>
   } @placeholder {
-  <div class="mt-8 bg-secondary p-6 rounded-lg animate-pulse">
+  <div class="bg-secondary p-6 rounded-lg animate-pulse">
     <div class="h-4 bg-gray-700 rounded w-1/4 mb-4"></div>
     <div class="h-32 bg-gray-700 rounded"></div>
   </div>

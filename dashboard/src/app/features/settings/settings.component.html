@@ -3,121 +3,98 @@
 
   <form [formGroup]="form" (ngSubmit)="onSubmit()" class="space-y-6">
     <!-- Notifications -->
-    @defer (on viewport) {
-    <mat-card class="bg-secondary">
-      <mat-card-header>
-        <mat-card-title>Notifications</mat-card-title>
-      </mat-card-header>
-      <mat-card-content class="space-y-4" formGroupName="notifications">
-        <div>
-          <mat-slide-toggle formControlName="pushEnabled" color="primary"> Enable Push Notifications </mat-slide-toggle>
+    <app-card>
+      <app-card-header>
+        <h2 class="text-xl font-semibold" title>Notifications</h2>
+        <p class="text-sm text-gray-400" subtitle>Configure how you receive updates</p>
+      </app-card-header>
+      <app-card-content formGroupName="notifications">
+        <div class="space-y-4">
+          <div>
+            <mat-slide-toggle formControlName="pushEnabled" color="primary">
+              Enable Push Notifications
+            </mat-slide-toggle>
+          </div>
+          <div>
+            <mat-slide-toggle formControlName="emailUpdates" color="primary"> Receive Email Updates </mat-slide-toggle>
+          </div>
         </div>
-        <div>
-          <mat-slide-toggle formControlName="emailUpdates" color="primary"> Receive Email Updates </mat-slide-toggle>
-        </div>
-      </mat-card-content>
-    </mat-card>
-    } @placeholder {
-    <div class="bg-secondary rounded-lg p-6 animate-pulse">
-      <div class="h-6 w-32 bg-gray-700 rounded mb-4"></div>
-      <div class="space-y-4">
-        <div class="h-8 w-48 bg-gray-700 rounded"></div>
-        <div class="h-8 w-48 bg-gray-700 rounded"></div>
-      </div>
-    </div>
-    } @loading {
-    <div class="bg-secondary rounded-lg p-6">
-      <div class="flex items-center justify-center">
-        <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-accent"></div>
-      </div>
-    </div>
-    }
+      </app-card-content>
+    </app-card>
 
     <!-- Preferences -->
-    @defer (on viewport) {
-    <mat-card class="bg-secondary">
-      <mat-card-header>
-        <mat-card-title>Preferences</mat-card-title>
-      </mat-card-header>
-      <mat-card-content class="space-y-4" formGroupName="preferences">
-        <mat-form-field appearance="fill" class="w-full">
-          <mat-label>Language</mat-label>
-          <mat-select formControlName="language">
-            <mat-option value="en">English</mat-option>
-            <mat-option value="es">Spanish</mat-option>
-            <mat-option value="fr">French</mat-option>
-          </mat-select>
-        </mat-form-field>
+    <app-card>
+      <app-card-header>
+        <h2 class="text-xl font-semibold" title>Preferences</h2>
+        <p class="text-sm text-gray-400" subtitle>Customize your experience</p>
+      </app-card-header>
+      <app-card-content formGroupName="preferences">
+        <div class="space-y-4">
+          <mat-form-field appearance="fill" class="w-full">
+            <mat-label>Language</mat-label>
+            <mat-select formControlName="language">
+              <mat-option value="en">English</mat-option>
+              <mat-option value="es">Spanish</mat-option>
+              <mat-option value="fr">French</mat-option>
+            </mat-select>
+          </mat-form-field>
 
-        <mat-form-field appearance="fill" class="w-full">
-          <mat-label>Timezone</mat-label>
-          <mat-select formControlName="timezone">
-            <mat-option value="UTC">UTC</mat-option>
-            <mat-option value="EST">EST</mat-option>
-            <mat-option value="PST">PST</mat-option>
-          </mat-select>
-        </mat-form-field>
+          <mat-form-field appearance="fill" class="w-full">
+            <mat-label>Timezone</mat-label>
+            <mat-select formControlName="timezone">
+              <mat-option value="UTC">UTC</mat-option>
+              <mat-option value="EST">EST</mat-option>
+              <mat-option value="PST">PST</mat-option>
+            </mat-select>
+          </mat-form-field>
 
-        <mat-form-field appearance="fill" class="w-full">
-          <mat-label>Theme</mat-label>
-          <mat-select formControlName="theme">
-            <mat-option value="system">System</mat-option>
-            <mat-option value="dark">Dark</mat-option>
-            <mat-option value="light">Light</mat-option>
-          </mat-select>
-        </mat-form-field>
-      </mat-card-content>
-    </mat-card>
-    } @placeholder {
-    <div class="bg-secondary rounded-lg p-6 animate-pulse">
-      <div class="h-6 w-32 bg-gray-700 rounded mb-4"></div>
-      <div class="space-y-4">
-        <div class="h-12 bg-gray-700 rounded"></div>
-        <div class="h-12 bg-gray-700 rounded"></div>
-        <div class="h-12 bg-gray-700 rounded"></div>
-      </div>
-    </div>
-    }
+          <mat-form-field appearance="fill" class="w-full">
+            <mat-label>Theme</mat-label>
+            <mat-select formControlName="theme">
+              <mat-option value="system">System</mat-option>
+              <mat-option value="dark">Dark</mat-option>
+              <mat-option value="light">Light</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </app-card-content>
+    </app-card>
 
     <!-- Data Management -->
-    @defer (on viewport) {
-    <mat-card class="bg-secondary">
-      <mat-card-header>
-        <mat-card-title>Data Management</mat-card-title>
-      </mat-card-header>
-      <mat-card-content class="space-y-4" formGroupName="data">
-        <mat-form-field appearance="fill" class="w-full">
-          <mat-label>Data Retention (days)</mat-label>
-          <input matInput type="number" formControlName="retentionDays" />
-        </mat-form-field>
+    <app-card>
+      <app-card-header>
+        <h2 class="text-xl font-semibold" title>Data Management</h2>
+        <p class="text-sm text-gray-400" subtitle>Control your data settings</p>
+      </app-card-header>
+      <app-card-content formGroupName="data">
+        <div class="space-y-4">
+          <mat-form-field appearance="fill" class="w-full">
+            <mat-label>Data Retention (days)</mat-label>
+            <input matInput type="number" formControlName="retentionDays" />
+          </mat-form-field>
 
-        <div>
-          <mat-slide-toggle formControlName="autoBackup" color="primary"> Enable Automatic Backup </mat-slide-toggle>
+          <div>
+            <mat-slide-toggle formControlName="autoBackup" color="primary"> Enable Automatic Backup </mat-slide-toggle>
+          </div>
+
+          <mat-form-field appearance="fill" class="w-full">
+            <mat-label>Sync Frequency</mat-label>
+            <mat-select formControlName="syncFrequency">
+              <mat-option value="hourly">Hourly</mat-option>
+              <mat-option value="daily">Daily</mat-option>
+              <mat-option value="weekly">Weekly</mat-option>
+            </mat-select>
+          </mat-form-field>
         </div>
+      </app-card-content>
+    </app-card>
 
-        <mat-form-field appearance="fill" class="w-full">
-          <mat-label>Sync Frequency</mat-label>
-          <mat-select formControlName="syncFrequency">
-            <mat-option value="hourly">Hourly</mat-option>
-            <mat-option value="daily">Daily</mat-option>
-            <mat-option value="weekly">Weekly</mat-option>
-          </mat-select>
-        </mat-form-field>
-      </mat-card-content>
-    </mat-card>
-    } @placeholder {
-    <div class="bg-secondary rounded-lg p-6 animate-pulse">
-      <div class="h-6 w-40 bg-gray-700 rounded mb-4"></div>
-      <div class="space-y-4">
-        <div class="h-12 bg-gray-700 rounded"></div>
-        <div class="h-8 w-48 bg-gray-700 rounded"></div>
-        <div class="h-12 bg-gray-700 rounded"></div>
-      </div>
-    </div>
-    }
-
-    <div class="flex justify-end">
-      <button mat-raised-button color="primary" type="submit">Save Changes</button>
-    </div>
+    <app-card>
+      <app-card-content>
+        <div class="flex justify-end">
+          <button mat-raised-button color="primary" type="submit">Save Changes</button>
+        </div>
+      </app-card-content>
+    </app-card>
   </form>
 </div>

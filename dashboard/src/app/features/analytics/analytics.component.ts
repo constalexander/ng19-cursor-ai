@@ -5,13 +5,14 @@ import { ChartConfiguration } from 'chart.js';
 import { Chart } from 'chart.js/auto';
 import { BaseChartDirective } from 'ng2-charts';
 import { CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend, ArcElement } from 'chart.js';
+import { CardComponent, CardHeaderComponent, CardContentComponent } from '@lib/shared/ui';
 
 // Register Chart.js components
 Chart.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend, ArcElement);
 
 @Component({
   selector: 'app-analytics',
-  imports: [CommonModule, MatCardModule, BaseChartDirective],
+  imports: [CommonModule, MatCardModule, CardComponent, CardHeaderComponent, CardContentComponent, BaseChartDirective],
   templateUrl: './analytics.component.html',
 })
 export class AnalyticsComponent {
