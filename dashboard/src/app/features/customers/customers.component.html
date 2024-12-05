@@ -7,6 +7,40 @@
     </mat-form-field>
   </div>
 
+  <!-- Stats Cards -->
+  <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+    <mat-card class="bg-secondary">
+      <mat-card-content>
+        <div class="text-sm text-gray-400">Total Customers</div>
+        <div class="text-2xl font-bold">{{ stats().totalCustomers }}</div>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card class="bg-secondary">
+      <mat-card-content>
+        <div class="text-sm text-gray-400">Active Customers</div>
+        <div class="text-2xl font-bold text-green-500">
+          {{ stats().activeCustomers }}
+          <span class="text-sm">({{ activePercentage() | number : '1.0-0' }}%)</span>
+        </div>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card class="bg-secondary">
+      <mat-card-content>
+        <div class="text-sm text-gray-400">Total Revenue</div>
+        <div class="text-2xl font-bold">${{ stats().totalRevenue | number : '1.2-2' }}</div>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card class="bg-secondary">
+      <mat-card-content>
+        <div class="text-sm text-gray-400">Average Revenue</div>
+        <div class="text-2xl font-bold">${{ stats().averageRevenue | number : '1.2-2' }}</div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
   <mat-card class="bg-secondary">
     <mat-card-content>
       <table mat-table [dataSource]="dataSource" matSort class="w-full">

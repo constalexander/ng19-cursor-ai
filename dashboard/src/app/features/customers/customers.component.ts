@@ -9,6 +9,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatCardModule } from '@angular/material/card';
 import { FormsModule } from '@angular/forms';
 import { InteractiveDirective } from '@lib/shared/directives';
+import { CustomerStatsService } from '@lib/shared/services/customer-stats.service';
 
 interface Customer {
   id: string;
@@ -76,8 +77,14 @@ export class CustomersComponent implements OnInit, AfterViewInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
+  readonly stats = this.customerStats.stats;
+  readonly activePercentage = this.customerStats.activePercentage;
+
+  constructor(private fb: FormBuilder, private customerStats: CustomerStatsService) {}
+
   ngOnInit() {
     this.dataSource = new MatTableDataSource(this.customers());
+    this.customerStats.updateCustomers(this.customers());
   }
 
   ngAfterViewInit() {
