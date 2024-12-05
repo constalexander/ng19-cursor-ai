@@ -1,1 +1,31 @@
-<p>analytics works!</p>
+<div class="space-y-6">
+  <h1 class="text-2xl font-bold">Analytics</h1>
+
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+    <!-- Sales Chart -->
+    <mat-card class="bg-secondary">
+      <mat-card-header>
+        <mat-card-title>Sales Overview</mat-card-title>
+        <mat-card-subtitle>Last 6 months</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        @if (isBrowser) {
+        <canvas baseChart [type]="'line'" [data]="salesData" [options]="salesOptions"> </canvas>
+        }
+      </mat-card-content>
+    </mat-card>
+
+    <!-- Traffic Sources -->
+    <mat-card class="bg-secondary">
+      <mat-card-header>
+        <mat-card-title>Traffic Sources</mat-card-title>
+        <mat-card-subtitle>Distribution by channel</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        @if (isBrowser) {
+        <canvas baseChart [type]="'doughnut'" [data]="trafficData" [options]="trafficOptions"> </canvas>
+        }
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

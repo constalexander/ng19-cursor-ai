@@ -1,4 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
+@import '@angular/material/prebuilt-themes/pink-bluegrey.css';
 
 @tailwind base;
 @tailwind components;
@@ -8,5 +9,15 @@
 @layer base {
   body {
     @apply bg-primary text-gray-200 min-h-screen;
+    margin: 0;
   }
+}
+
+// Material overrides for dark theme
+.mat-mdc-table {
+  background: transparent !important;
+}
+
+.mat-mdc-paginator {
+  background: transparent !important;
 }
