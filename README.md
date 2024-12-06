@@ -33,6 +33,6 @@ http://localhost:4202
 
 ## Look Around
 
-The `.cursorrules` file was the first file in a new git repo. I fed this file to Cursor Composer AI and it generated the entire project step by step over the course of about 2 hours.
+The `.cursorrules-history` file is a record of the prompts used to generate the project.
 
-I could keep going (and probably will) but so far the results are good.
+The `.cursorrules` file is the active prompt being used to generate the latest changes.

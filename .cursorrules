@@ -1,27 +1,6 @@
-Let's build a new Angular app starting from scratch.
-Be sure to consult with the Angular documentation on how to do it "The Angular Way".
-Use Angular CLI to generate the app, components, etc. (Do not use AnalogJS)
-Let's take it step by step and work our way up to the final product.
-When you give me a CLI command, wait for me to run it before continuing.
-Requirements:
+Go through the entire codebase once and assess where we stand with the original requirements. Make a list of missing features / bugs.
 
-- Angular latest (currently 19.0.3) (do not install CLI globally, use npx equivalent for pnpm)
-- strictly follows Angular Style Guide as defined on Angular.dev documentation
-- the app should be called "dashboard"
-- Tailwind + SCSS
-- Vite
-- pnpm for package manager
-- ESLint
-- Prettier, with printWidth set to 120
-- Jest for unit testing
-- Playwrite for E2E testing
-
-The app will be a mock app to showcase the latest features of Angular.
-To accomplish this, let's build a fake dashboard with a sidebar and a main content area.
-It should be a dark theme only (no light theme).
-It should be responsive from medium breakpoint onwards.
-The sidebar menu should have about 5 items, which will change the main content area.
-Pick the 5 menu items yourself, as representative of a standard dashboard.
+For reference, here are the original requirements:
 
 These are some of the Angular features we want to showcase. Be sure to write them in the newest, most modern way possible:
 
